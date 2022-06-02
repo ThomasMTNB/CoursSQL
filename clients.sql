@@ -36,6 +36,19 @@ value("thomas","thom.m@fr","0654789");
 
 alter table clients add column age integer(3) not null after postnom;
 
-insert into clients(age)
+-- mise a jour
 
+update clients set tel="55555555" where ID=3;
+
+delete from clients where id=4;
+
+-- ??????
+
+SHOW VARIABLES LIKE 'sql_mode'
+
+set sql_mode='STRICT_TRANS_TABLES';
+
+
+Select * from clients where age<20 and nom="verilmickael";
+Select * from clients where age>20 or nom="thom";
 
