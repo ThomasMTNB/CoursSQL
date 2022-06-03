@@ -3,7 +3,7 @@ create database Sales;
 use Sales;
 
 create table telephones(
-    id integer not null auto_increment prmary key,
+    id integer not null auto_increment primary key,
     name varchar(50) not null,
     manufacturer varchar(50) not null,
     price float(10),
@@ -19,4 +19,10 @@ value("Iphone 4", "Apple", 399, 9436),
 ("Droid", "Motorola", 150, 8395),
 ("Iphone 13 Pro Max", "Apple", 1300, 12849),
 ("Galaxy Note 20", "Samsung", 1100, 10353);
+
+select name,manufacturer from telephones where price>200;
+
+select name,manufacturer from telephones where price>150 and price<200;
+
+select * from telephones where manufacturer="samsung" or manufacturer="apple";
 
