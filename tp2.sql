@@ -47,14 +47,20 @@ create table clients(
 insert into clients(compagnyName,firstname,lastname,email,phone,address,zipcode,city,country,state)
 value("capgemini","fabrice","martin","martin@mail.com","0656896433","xxxxxxxxxxx","xxxxx","nantes","france",0),
 ("m2if","julien","lamar","lamrjul@mail.com","0658996433","xxxxxxxxxxx","xxxxx","nantes","france",0),
-("capgemini","fabrice","martin","martin@mail.com","065776433","xxxxxxxxxxx","xxxxx","nantes","france",0),
-("capgemini","fabrice","martin","martin@mail.com","0636896433","xxxxxxxxxxx","xxxxx","nantes","france",0);
+("ESNATOS","bob","martin","martin@mail.com","065776433","xxxxxxxxxxx","xxxxx","nantes","france",0),
+("Soprasteria","alex","dupont","martin@mail.com","0636896433","xxxxxxxxxxx","xxxxx","nantes","france",0);
 
------------
--- FAUX --
-alter table orders modify column clientid foreign key(clientid) references clients(id); ??
 
--- la
 
-?? alter table orders add column foreign key(clientid) references clients(id);
+alter table orders add foreign key(clientid) references clients(id);
 
+
+select clients.compagnyName, orders.typepresta from clients join orders on clients.id=orders.clientid where compagnyName="m2if"
+
+select clients.firstname, clients.lastname, clients.email, orders.typepresta from orders join clients on clients.id=orders.clientid where typepresta="coaching"
+
+select clients.firstname, clients.lastname, clients.email, orders.typepresta, orders.designation from orders join clients on clients.id=orders.clientid where typepresta="coaching" and designation="react techlead"
+
+SELECT typePresta, designation, (unitPrice * nbDays) AS prix_UHT, (1.2 * unitPrice * nbDays) AS prix_TTC FROM clients JOIN orders ON clients.id=orders.clientId WHERE orders.typePresta="formation"
+
+SELECT typePresta, designation, (1.2 * unitPrice * nbDays) AS prix_TTC FROM clients JOIN orders ON clients.id = orders.clientId WHERE (1.2 * unitPrice * nbDays) > 30000 AND orders.state = 2;
