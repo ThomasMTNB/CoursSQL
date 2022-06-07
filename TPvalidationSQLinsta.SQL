@@ -155,59 +155,64 @@ insert into commentaires (id, comments, date, utilisateurid, photoid) values (49
 insert into commentaires (id, comments, date, utilisateurid, photoid) values (50, 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.', '19/04/2022', 8, 31);
 
 
-insert into likes (id, utilisateurid, photoid) values (1,8,27);
-insert into likes (id, utilisateurid, photoid) values (2,19,32);
-insert into likes (id, utilisateurid, photoid) values (3,32,29);
-insert into likes (id, utilisateurid, photoid) values (4,33,8);
-insert into likes (id, utilisateurid, photoid) values (5,23,49);
-insert into likes (id, utilisateurid, photoid) values (6,33,40);
-insert into likes (id, utilisateurid, photoid) values (7,5,25);
-insert into likes (id, utilisateurid, photoid) values (8,22,42);
-insert into likes (id, utilisateurid, photoid) values (9,34,36);
-insert into likes (id, utilisateurid, photoid) values (10,24,1);
-insert into likes (id, utilisateurid, photoid) values (11,32,32);
-insert into likes (id, utilisateurid, photoid) values (12,44,31);
-insert into likes (id, utilisateurid, photoid) values (13,26,10);
-insert into likes (id, utilisateurid, photoid) values (14,11,12);
-insert into likes (id, utilisateurid, photoid) values (15,12,10);
-insert into likes (id, utilisateurid, photoid) values (16,35,9);
-insert into likes (id, utilisateurid, photoid) values (17,12,48);
-insert into likes (id, utilisateurid, photoid) values (18,18,10);
-insert into likes (id, utilisateurid, photoid) values (19,2,8);
-insert into likes (id, utilisateurid, photoid) values (20,32,34);
-insert into likes (id, utilisateurid, photoid) values (21,31,23);
-insert into likes (id, utilisateurid, photoid) values (22,15,9);
-insert into likes (id, utilisateurid, photoid) values (23,28,16);
-insert into likes (id, utilisateurid, photoid) values (24,46,17);
-insert into likes (id, utilisateurid, photoid) values (25,29,33);
-insert into likes (id, utilisateurid, photoid) values (26,29,49);
-insert into likes (id, utilisateurid, photoid) values (27,50,28);
-insert into likes (id, utilisateurid, photoid) values (28,36,14);
-insert into likes (id, utilisateurid, photoid) values (29,14,29);
-insert into likes (id, utilisateurid, photoid) values (30,18,4);
-insert into likes (id, utilisateurid, photoid) values (31,36,49);
-insert into likes (id, utilisateurid, photoid) values (32,5,46);
-insert into likes (id, utilisateurid, photoid) values (33,21,38);
-insert into likes (id, utilisateurid, photoid) values (34,33,18);
-insert into likes (id, utilisateurid, photoid) values (35,34,16);
-insert into likes (id, utilisateurid, photoid) values (36,29,35);
-insert into likes (id, utilisateurid, photoid) values (37,20,2);
-insert into likes (id, utilisateurid, photoid) values (38,43,42);
-insert into likes (id, utilisateurid, photoid) values (39,10,39);
-insert into likes (id, utilisateurid, photoid) values (40,15,16);
-insert into likes (id, utilisateurid, photoid) values (41,28,45);
-insert into likes (id, utilisateurid, photoid) values (42,36,34);
-insert into likes (id, utilisateurid, photoid) values (43,6,6);
-insert into likes (id, utilisateurid, photoid) values (44,25,30);
-insert into likes (id, utilisateurid, photoid) values (45,18,30);
-insert into likes (id, utilisateurid, photoid) values (46,23,31);
-insert into likes (id, utilisateurid, photoid) values (47,25,14);
-insert into likes (id, utilisateurid, photoid) values (48,14,17);
-insert into likes (id, utilisateurid, photoid) values (49,41,20);
-insert into likes (id, utilisateurid, photoid) values (50,24,6);
+INSERT INTO likes (id, utilisateurid, photoid) VALUES 
+(1, 6, 43), (2, 4, 37), (3, 1, 12), (4, 6, 5), (5, 6, 16), (6, 10, 41), (7, 6, 16), (8, 10, 4), (9, 3, 25), (10, 6, 48), (11, 9, 3), (12, 9, 20), (13, 8, 48),
+(14, 7, 5), (15, 7, 15), (16, 9, 7), (17, 8, 29), (18, 9, 49), (19, 6, 46), (20, 8, 50), (21, 3, 41), (22, 4, 36), (23, 10, 50), (24, 7, 25), (25, 10, 21),
+(26, 2, 39), (27, 5, 24), (28, 3, 7), (29, 2, 8), (30, 3, 5), (31, 3, 6), (32, 4, 29), (33, 2, 18), (34, 2, 17), (35, 8, 24), (36, 1, 4), (37, 5, 13),
+(38, 3, 33), (39, 7, 9), (40, 4, 39), (41, 7, 19), (42, 1, 33), (43, 3, 26), (44, 5, 39), (45, 3, 22), (46, 8, 45), (47, 1, 45), (48, 3, 18), (49, 2, 10), (50, 9, 22);
+
+-- 4
+
+select commentaires.comments, utilisateurs.pseudo from commentaires join utilisateurs 
+on utilisateurs.id=commentaires.utilisateurid;
+
+--
+SELECT 
+commentaires.utilisateurid, utilisateurs.pseudo, commentaires.comments 
+FROM commentaires 
+JOIN utilisateurs 
+ON utilisateurs.id = commentaires.utilisateurid;
+--
+
+-- 5
+
+select commentaires.comments, photos.image from commentaires join photos 
+on photos.id=commentaires.photoid;
 
 
 
+-- 6
 
+select photos.image, utilisateurs.pseudo from photos join utilisateurs 
+on utilisateurs.id=photos.utilisateurid;
 
+--
+SELECT 
+photos.id, photos.image, utilisateurs.pseudo
+FROM photos 
+JOIN utilisateurs 
+ON photos.utilisateurid = utilisateurs.id ORDER BY photos.id;
+--
+
+-- 7
+
+select commentaires.comments, utilisateurs.pseudo, photos.id from  photos join commentaires
+on commentaires.photoid=photos.id join utilisateurs on utilisateurs.id=commentaires.utilisateurid where photos.id=3;
+
+-- 8 + 9
+
+XXX
+select photos.image, commentaires.comments, photos.id, utilisateurs.id from photos join commentaires
+on commentaires.photoid=photos.id join utilisateurs on utilisateurs.id=commentaires.utilisateurid where utilisateurid=photoid;
+XXX
+
+select photos.image, commentaires.comments, photos.id, utilisateurs.id, utilisateurs.pseudo from photos join utilisateurs
+on utilisateurs.id=photos.utilisateurid join commentaires on utilisateurs.id=commentaires.utilisateurid 
+where photos.id=commentaires.photoid
+
+--
+
+-- 10
+
+select count(*) from likes join photos on photos.id=likes.photoid where photos.id=4 
 
