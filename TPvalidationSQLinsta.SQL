@@ -161,27 +161,22 @@ INSERT INTO likes (id, utilisateurid, photoid) VALUES
 (26, 2, 39), (27, 5, 24), (28, 3, 7), (29, 2, 8), (30, 3, 5), (31, 3, 6), (32, 4, 29), (33, 2, 18), (34, 2, 17), (35, 8, 24), (36, 1, 4), (37, 5, 13),
 (38, 3, 33), (39, 7, 9), (40, 4, 39), (41, 7, 19), (42, 1, 33), (43, 3, 26), (44, 5, 39), (45, 3, 22), (46, 8, 45), (47, 1, 45), (48, 3, 18), (49, 2, 10), (50, 9, 22);
 
--- 4
+-- 4 OK  montrer username et contenue pour tout commentaire
 
 select commentaires.comments, utilisateurs.pseudo from commentaires join utilisateurs 
 on utilisateurs.id=commentaires.utilisateurid;
 
---
-SELECT 
-commentaires.utilisateurid, utilisateurs.pseudo, commentaires.comments 
-FROM commentaires 
-JOIN utilisateurs 
-ON utilisateurs.id = commentaires.utilisateurid;
---
 
--- 5
+-- 5 ok    Pour chaque commentaire, afficher son contenu et l'url de la photo à laquel le commentaire a été ajouté
+
 
 select commentaires.comments, photos.image from commentaires join photos 
 on photos.id=commentaires.photoid;
 
 
 
--- 6
+-- 6  OK  Afficher l'url de chaque photo et le nom d'utilisateur de l'auteur
+
 
 select photos.image, utilisateurs.pseudo from photos join utilisateurs 
 on utilisateurs.id=photos.utilisateurid;
@@ -194,25 +189,24 @@ JOIN utilisateurs
 ON photos.utilisateurid = utilisateurs.id ORDER BY photos.id;
 --
 
--- 7
+-- 7  ok  Trouver tous les commentaires pour la photo d'id 3, avec le username de l'utilisateur qui a commenté
+
 
 select commentaires.comments, utilisateurs.pseudo, photos.id from  photos join commentaires
 on commentaires.photoid=photos.id join utilisateurs on utilisateurs.id=commentaires.utilisateurid where photos.id=3;
 
--- 8 + 9
+-- 8 + 9  ok Trouver tous les url des photos ainsi que tous les commentaire qui ont été posté par l'auteur de la photo
 
-XXX
-select photos.image, commentaires.comments, photos.id, utilisateurs.id from photos join commentaires
-on commentaires.photoid=photos.id join utilisateurs on utilisateurs.id=commentaires.utilisateurid where utilisateurid=photoid;
-XXX
 
-select photos.image, commentaires.comments, photos.id, utilisateurs.id, utilisateurs.pseudo from photos join utilisateurs
+select photos.image, commentaires.comments, photos.id, utilisateurs.id, utilisateurs.pseudo from utilisateurs join photos
 on utilisateurs.id=photos.utilisateurid join commentaires on utilisateurs.id=commentaires.utilisateurid 
 where photos.id=commentaires.photoid
 
 --
 
--- 10
+-- 10 Le nombre de likes pour la photo d’ID 4
 
-select count(*) from likes join photos on photos.id=likes.photoid where photos.id=4 
 
+select count(*) from photos join likes on photos.id=likes.photoid where photos.id=4 
+
+-- Trouvez le nombre de commentaires pour chaque photo où le photo_id est inférieur à 3 et la photo a plus de 2 commentaires
